@@ -16,3 +16,12 @@ jobs:
           node-version: 14.x
       - name: Install deps
         run: npm install
+      - name: Run the App
+        run: nohup npm run start &
+      - name: Run HawkScan
+        uses: stackhawk/hawkscan-action@v1.2.1
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
+      
+        
+        
