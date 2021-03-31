@@ -6,7 +6,7 @@ on:
 
 jobs:
   builder:
-    runs-on: unbuntu-20.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Check Out Code
         uses: actions/checkout@v2
