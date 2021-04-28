@@ -1,0 +1,32 @@
+name: Update release
+
+on:
+  push:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Update release for ${{ github.event.client_payload.ReleaseBranchName }}
+      uses: actions/github-script@v2
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+            const response = await github.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              perPage: 1
+            });
+            
+            github.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: response.data[0].id,
+              prerelease: false,
+              draft: false
+            });
+
