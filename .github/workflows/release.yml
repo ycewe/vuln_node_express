@@ -2,7 +2,7 @@ name: Update release
 
 on:
   schedule:
-    - cron: 0 11 * * *
+    - cron: 15 3 * * *
 
 jobs:
   build:
